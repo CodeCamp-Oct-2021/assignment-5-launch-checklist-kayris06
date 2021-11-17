@@ -2,6 +2,8 @@
 
 
 
+
+
 window.addEventListener("load", function () {
 
     let listedPlanets;
@@ -11,23 +13,14 @@ window.addEventListener("load", function () {
         listedPlanets = result;
         console.log(listedPlanets);
     }).then(function () {
-        console.log(listedPlanets);
+    
         // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
-        pickPlanet(listedPlanets)
-        let div = document.getElementById("missionTarget");
-        div.innerHTML =
-            `<h2>Mission Destination</h2>
-             <ol>
-                 <li>Name: ${this.name}</li>
-                 <li>Diameter: ${this.diameter}</li>
-                <li>Star: ${this.star}</li>
-             <li>Distance from Earth: ${this.distance}</li>
-               <li>Number of Moons: ${this.moons}</li>
-            </ol>
-           <img src="${this.imageUrl}">`
+        let newPlanet = pickPlanet(listedPlanets)
+        addDestinationInfo(document, newPlanet.name, newPlanet.diameter, newPlanet.star, newPlanet.distance,newPlanet.moons, newPlanet.image)
+  
     })
 
-});
+
 let form = document.querySelector("form");
 form.addEventListener("submit", function (event) {
 
@@ -46,16 +39,4 @@ form.addEventListener("submit", function (event) {
 
 });
 
-
-// });
-
-//based on console.log statements we know listedPlanets is out
-        //list array of fetched planet json
-        //we have access to our fetched planets, so we need to select a random
-        //planet with our PickPlanet function, update text of our mission Target div from html to 
-        //display our information
-        // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
-
-        //from the list of planets add that information to your destination.
-        //invoke pickPlanet and pass it pour list of planets and store in a variable
-        //we can use that object to fill in our template literal 
+});
